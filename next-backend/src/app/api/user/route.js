@@ -3,6 +3,7 @@ import { getClientPromise } from "@/lib/mongodb";
 import { errorResponse, printExceptionLog, successResponse } from "@/lib/utils";
 import { ObjectId } from "mongodb";
 import corsHeaders from "@/lib/cors";
+import bcrypt from "bcrypt";
 /**
  * User API endpoints go here
  */
@@ -16,6 +17,7 @@ export async function OPTIONS(request) {
 export async function POST(request) {
 // username email password role
     try {
+        const hashPassword = await bcrypt.hash(password, 10);
         const data = await request.json();
         const username = data.username;
         const email = data.email;

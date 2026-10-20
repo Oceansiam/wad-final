@@ -8,7 +8,6 @@ import {
   X_HEADER_USER_ROLE,
 } from "./lib/constant";
 
-requestHeaders.set(X_HEADER_USER_ROLE, user.role);
 export function proxy(request) {
   if (request.method === "OPTIONS") return NextResponse.next();
   const user = verifyJWT(request);
